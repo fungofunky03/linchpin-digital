@@ -1,9 +1,4 @@
 {
   "buildCommand": "next build --webpack",
-  "framework": "nextjs",
-  "build": {
-    "env": {
-      "CLERK_SECRET_KEY": "@clerk-secret-key"
-    }
-  }
+  "framework": "nextjs"
 }
