@@ -44,3 +44,4 @@ const ratelimit = new Ratelimit({
 - Never commit `.env.local` — it's gitignored by default.
 - Prefix client-accessible vars with `NEXT_PUBLIC_`. Server-only secrets (Stripe, Supabase service role) must NOT have this prefix.
 - On Vercel: set all vars in Project → Settings → Environment Variables. Stripe test vs. live keys should be toggled by environment (Preview = test, Production = live).
+# Build Wed Apr 22 08:10:05 UTC 2026
