@@ -1,15 +1,17 @@
 import {
-  pgTable,
+  pgSchema,
   text,
   timestamp,
   boolean,
   integer,
-  pgEnum,
 } from "drizzle-orm/pg-core"
 
+// Use a dedicated schema to isolate Linchpin tables from other projects
+const linchpin = pgSchema("linchpin")
+
 // ─── Enums ───────────────────────────────────────────────────────────────────
-export const planEnum = pgEnum("plan", ["starter", "growth", "pro"])
-export const subscriptionStatusEnum = pgEnum("subscription_status", [
+export const planEnum = linchpin.enum("plan", ["starter", "growth", "pro"])
+export const subscriptionStatusEnum = linchpin.enum("subscription_status", [
   "active",
   "trialing",
   "past_due",
@@ -21,7 +23,7 @@ export const subscriptionStatusEnum = pgEnum("subscription_status", [
 // ─── Users ───────────────────────────────────────────────────────────────────
 // Clerk is the source of truth for identity. This table stores
 // Linchpin-specific data keyed to the Clerk user ID.
-export const users = pgTable("users", {
+export const users = linchpin.table("users", {
   id: text("id").primaryKey(), // Clerk user ID (user_xxx)
   email: text("email").notNull().unique(),
   name: text("name"),
@@ -48,7 +50,7 @@ export const users = pgTable("users", {
 
 // ─── Leads ───────────────────────────────────────────────────────────────────
 // Leads captured via AI receptionist or contact forms (Growth/Pro only)
-export const leads = pgTable("leads", {
+export const leads = linchpin.table("leads", {
   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   userId: text("user_id")
     .notNull()
@@ -64,7 +66,7 @@ export const leads = pgTable("leads", {
 
 // ─── Reviews ─────────────────────────────────────────────────────────────────
 // Review requests sent to customers (Growth/Pro only)
-export const reviewRequests = pgTable("review_requests", {
+export const reviewRequests = linchpin.table("review_requests", {
   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   userId: text("user_id")
     .notNull()
@@ -79,7 +81,7 @@ export const reviewRequests = pgTable("review_requests", {
 
 // ─── Audit Log ───────────────────────────────────────────────────────────────
 // Stripe webhook events — stored for idempotency
-export const stripeEvents = pgTable("stripe_events", {
+export const stripeEvents = linchpin.table("stripe_events", {
   id: text("id").primaryKey(), // Stripe event ID (evt_xxx)
   type: text("type").notNull(),
   processedAt: timestamp("processed_at").defaultNow().notNull(),
