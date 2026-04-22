@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { auth } from "@clerk/nextjs/server"
 import { UserButton } from "@clerk/nextjs"
 
 export default async function MarketingLayout({
@@ -8,6 +7,7 @@ export default async function MarketingLayout({
 }: {
   children: React.ReactNode
 }) {
+  const { auth } = await import("@clerk/nextjs/server")
   const { userId } = await auth()
 
   return (

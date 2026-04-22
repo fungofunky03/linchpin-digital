@@ -1,7 +1,6 @@
 export const dynamic = "force-dynamic"
 
 import { NextResponse } from "next/server"
-import { auth, currentUser } from "@clerk/nextjs/server"
 import { stripe, PLANS, type PlanKey } from "@/lib/stripe"
 import { db } from "@/lib/db"
 import { users } from "@/db/schema"
@@ -10,6 +9,8 @@ import { absoluteUrl } from "@/lib/utils"
 
 export async function POST(req: Request) {
   try {
+    // Dynamic import defers Clerk initialization to runtime (avoids build-time key error)
+    const { auth, currentUser } = await import("@clerk/nextjs/server")
     const { userId } = await auth()
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

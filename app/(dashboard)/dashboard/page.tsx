@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs/server"
 import { db } from "@/lib/db"
 import { users, leads, reviewRequests } from "@/db/schema"
 import { eq, count } from "drizzle-orm"
@@ -14,6 +13,7 @@ import { formatDate } from "@/lib/utils"
 export const dynamic = "force-dynamic"
 
 export default async function DashboardPage() {
+  const { auth } = await import("@clerk/nextjs/server")
   const { userId } = await auth()
 
   // Get user + counts
