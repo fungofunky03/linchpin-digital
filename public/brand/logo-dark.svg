@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 280" role="img" aria-label="Linchpin Digital">
+  <title>Linchpin Digital</title>
+  <g transform="translate(40,30)">
+    <path fill="#E4002B" fill-rule="evenodd" d="M100,10 L177.94,55 L177.94,145 L112,183.07 L112,214 Q112,222 108.5,229.5 L100,247 L91.5,229.5 Q88,222 88,214 L88,183.07 L22.06,145 L22.06,55 Z M100,54 L146,80.5 L146,133.5 L100,160 L54,133.5 L54,80.5 Z"/>
+  </g>
+  <g transform="translate(270,0)">
+    <text x="0" y="170" font-family="'Archivo Black', Impact, sans-serif" font-weight="900" font-size="140" letter-spacing="-4" fill="#FFFFFF">LINCHPIN</text>
+    <text x="4" y="216" font-family="Inter, 'Helvetica Neue', sans-serif" font-weight="600" font-size="40" letter-spacing="12" fill="#E4002B">DIGITAL</text>
+  </g>
+</svg>

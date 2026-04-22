@@ -41,14 +41,14 @@ export default function PricingPage() {
   }
 
   return (
-    <div className="py-20">
+    <div className="bg-white py-20 md:py-24">
       <div className="mx-auto max-w-5xl px-4">
-        <div className="mb-12 text-center">
-          <h1 className="mb-3 text-4xl font-extrabold text-slate-900">
+        <div className="mb-14 text-center">
+          <h1 className="mb-3 font-heading text-4xl text-[#0b0b10] md:text-5xl">
             Simple, transparent pricing
           </h1>
-          <p className="text-lg text-slate-500">
-            14-day free trial on all plans. Cancel anytime.
+          <p className="text-lg text-[#4a4a55]">
+            14-day trial on all plans. Credit card required. Cancel anytime.
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
@@ -58,41 +58,48 @@ export default function PricingPage() {
               return (
                 <Card
                   key={key}
-                  className={`relative flex flex-col ${isGrowth ? "border-blue-600 shadow-lg ring-2 ring-blue-600" : ""}`}
+                  className={`relative flex flex-col border-2 ${
+                    isGrowth
+                      ? "border-[#e4002b] shadow-xl"
+                      : "border-[#e5e5ea]"
+                  }`}
                 >
                   {isGrowth && (
-                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white">
+                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#e4002b] text-white hover:bg-[#e4002b]">
                       Most popular
                     </Badge>
                   )}
                   <CardHeader className="pb-4">
-                    <div className="text-sm font-semibold uppercase tracking-wide text-blue-600">
+                    <div className="text-xs font-semibold uppercase tracking-widest text-[#e4002b]">
                       {plan.name}
                     </div>
-                    <div className="mt-1 flex items-end gap-1">
-                      <span className="text-4xl font-extrabold text-slate-900">
+                    <div className="mt-2 flex items-end gap-1">
+                      <span className="font-heading text-5xl text-[#0b0b10]">
                         ${plan.price}
                       </span>
-                      <span className="mb-1 text-slate-400">/mo</span>
+                      <span className="mb-2 text-[#4a4a55]">/mo</span>
                     </div>
-                    <p className="text-sm text-slate-500">{plan.description}</p>
+                    <p className="text-sm text-[#4a4a55]">{plan.description}</p>
                   </CardHeader>
                   <CardContent className="flex flex-1 flex-col gap-4">
-                    <ul className="flex-1 space-y-2">
+                    <ul className="flex-1 space-y-3">
                       {plan.features.map((feat) => (
-                        <li key={feat} className="flex items-start gap-2 text-sm text-slate-700">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-500" />
+                        <li key={feat} className="flex items-start gap-2 text-sm text-[#0b0b10]">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#e4002b]" />
                           {feat}
                         </li>
                       ))}
                     </ul>
                     <Button
-                      className={`w-full ${isGrowth ? "bg-blue-600 hover:bg-blue-700 text-white" : ""}`}
-                      variant={isGrowth ? "default" : "outline"}
+                      className={`w-full h-11 font-semibold ${
+                        isGrowth
+                          ? "bg-[#e4002b] text-white hover:bg-[#c20024]"
+                          : "bg-[#0b0b10] text-white hover:bg-[#1a1a22]"
+                      }`}
                       disabled={loading === key}
                       onClick={() => handleCheckout(key)}
                     >
-                      {loading === key ? "Loading..." : "Start free trial"}
+                      {loading === key ? "Loading..." : "Start 14-day trial"}
                     </Button>
                   </CardContent>
                 </Card>
@@ -100,9 +107,9 @@ export default function PricingPage() {
             }
           )}
         </div>
-        <p className="mt-8 text-center text-sm text-slate-400">
+        <p className="mt-10 text-center text-sm text-[#4a4a55]">
           Need a custom managed-service package? Email{" "}
-          <a href="mailto:hello@linchpindigital.com" className="text-blue-600 hover:underline">
+          <a href="mailto:hello@linchpindigital.com" className="font-semibold text-[#e4002b] hover:underline">
             hello@linchpindigital.com
           </a>
         </p>
