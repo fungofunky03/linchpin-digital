@@ -1,6 +1,8 @@
 export const dynamic = "force-dynamic"
+export const runtime = "nodejs"
 
 import { NextResponse } from "next/server"
+import { unstable_noStore as noStore } from "next/cache"
 import { stripe } from "@/lib/stripe"
 import { db } from "@/lib/db"
 import { users } from "@/db/schema"
@@ -8,8 +10,8 @@ import { eq } from "drizzle-orm"
 import { absoluteUrl } from "@/lib/utils"
 
 export async function POST() {
+  noStore()
   try {
-    // Dynamic import defers Clerk initialization to runtime
     const { auth } = await import("@clerk/nextjs/server")
     const { userId } = await auth()
     if (!userId) {

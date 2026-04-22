@@ -1,6 +1,8 @@
 export const dynamic = "force-dynamic"
+export const runtime = "nodejs"
 
 import { NextResponse } from "next/server"
+import { unstable_noStore as noStore } from "next/cache"
 import { stripe, PLANS, type PlanKey } from "@/lib/stripe"
 import { db } from "@/lib/db"
 import { users } from "@/db/schema"
@@ -8,8 +10,9 @@ import { eq } from "drizzle-orm"
 import { absoluteUrl } from "@/lib/utils"
 
 export async function POST(req: Request) {
+  noStore()
   try {
-    // Dynamic import defers Clerk initialization to runtime (avoids build-time key error)
+    // Dynamic import defers Clerk initialization to runtime
     const { auth, currentUser } = await import("@clerk/nextjs/server")
     const { userId } = await auth()
     if (!userId) {
@@ -21,7 +24,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 })
     }
 
-    // Get or create DB user record
     let [dbUser] = await db.select().from(users).where(eq(users.id, userId))
 
     if (!dbUser) {
@@ -33,7 +35,6 @@ export async function POST(req: Request) {
         .returning()
     }
 
-    // Get or create Stripe customer
     let customerId = dbUser.stripeCustomerId
     if (!customerId) {
       const customer = await stripe.customers.create({
