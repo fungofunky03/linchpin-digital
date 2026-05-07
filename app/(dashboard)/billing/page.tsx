@@ -75,12 +75,12 @@ export default function BillingPage() {
           <div className="grid gap-4 md:grid-cols-3">
             {(Object.entries(PLANS) as [PlanKey, (typeof PLANS)[PlanKey]][]).map(
               ([key, plan]) => (
-                <Card key={key} className={key === "growth" ? "border-blue-600 ring-2 ring-blue-600" : ""}>
+                <Card key={key} className={key === "growth" ? "border-[#e4002b] ring-2 ring-[#e4002b]" : ""}>
                   <CardContent className="p-5 space-y-4">
                     <div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-blue-600">{plan.name}</span>
-                        {key === "growth" && <Badge className="bg-blue-600 text-white text-xs">Popular</Badge>}
+                        <span className="text-sm font-semibold text-[#e4002b]">{plan.name}</span>
+                        {key === "growth" && <Badge className="bg-[#e4002b] text-white text-xs">Popular</Badge>}
                       </div>
                       <div className="mt-1 text-2xl font-extrabold text-slate-900">
                         ${plan.price}
@@ -90,7 +90,7 @@ export default function BillingPage() {
                     <ul className="space-y-1.5">
                       {plan.features.map((f) => (
                         <li key={f} className="flex items-start gap-2 text-xs text-slate-600">
-                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blue-500" />
+                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#e4002b]" />
                           {f}
                         </li>
                       ))}

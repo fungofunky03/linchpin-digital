@@ -19,12 +19,20 @@ const archivoBlack = Archivo_Black({
 
 export const metadata: Metadata = {
   title: {
-    default: "Linchpin Digital — Growth Engine for DFW Trade Businesses",
+    default: "Linchpin Digital — Done-for-you digital management for trade businesses",
     template: "%s | Linchpin Digital",
   },
   description:
-    "Modern websites, local SEO, AI receptionist, and a real-time ROI dashboard built for electricians, HVAC, and plumbing businesses in the DFW area.",
-  keywords: ["local SEO", "trades marketing", "electrician website", "HVAC marketing", "DFW"],
+    "We install and run the systems that keep leads, follow-ups, scheduling, reviews, and reporting moving — so trade business owners can stay on tools, not on their phones.",
+  keywords: [
+    "managed digital operations",
+    "trade business automation",
+    "lead management for contractors",
+    "electrician operations",
+    "plumber operations",
+    "HVAC operations",
+    "review automation for trades",
+  ],
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   icons: {
     icon: [

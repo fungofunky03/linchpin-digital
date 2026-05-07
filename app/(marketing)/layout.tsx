@@ -26,11 +26,14 @@ export default async function MarketingLayout({
             />
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
-            <Link href="/#features" className="text-sm font-medium text-[#0b0b10] hover:text-[#e4002b] transition-colors">
-              Features
+            <Link href="/#how-it-works" className="text-sm font-medium text-[#0b0b10] hover:text-[#e4002b] transition-colors">
+              How it works
             </Link>
             <Link href="/pricing" className="text-sm font-medium text-[#0b0b10] hover:text-[#e4002b] transition-colors">
               Pricing
+            </Link>
+            <Link href="/#faq" className="text-sm font-medium text-[#0b0b10] hover:text-[#e4002b] transition-colors">
+              FAQ
             </Link>
           </nav>
           <div className="flex items-center gap-3">
@@ -45,14 +48,14 @@ export default async function MarketingLayout({
               </>
             ) : (
               <>
-                <Link href="/sign-in">
+                <Link href="/sign-in" className="hidden sm:inline-block">
                   <Button variant="ghost" size="sm" className="text-[#0b0b10] hover:text-[#e4002b]">
                     Sign in
                   </Button>
                 </Link>
-                <Link href="/sign-up">
+                <Link href="/#contact">
                   <Button size="sm" className="bg-[#e4002b] text-white hover:bg-[#c20024]">
-                    Start trial
+                    Book a fit call
                   </Button>
                 </Link>
               </>
@@ -61,17 +64,67 @@ export default async function MarketingLayout({
         </div>
       </header>
       <main className="flex-1">{children}</main>
-      <footer className="border-t border-[#e5e5ea] bg-[#0b0b10] py-10 text-white">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 md:flex-row md:justify-between">
-          <Image
-            src="/brand/logo-dark.svg"
-            alt="Linchpin Digital"
-            width={160}
-            height={34}
-            className="h-8 w-auto"
-          />
-          <p className="text-sm text-[#b3b3bb]">
-            © {new Date().getFullYear()} Linchpin Digital. Built for DFW trades.
+      <footer className="border-t border-[#e5e5ea] bg-[#0b0b10] py-12 text-white">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-3">
+          <div>
+            <Image
+              src="/brand/logo-dark.svg"
+              alt="Linchpin Digital"
+              width={160}
+              height={34}
+              className="mb-4 h-8 w-auto"
+            />
+            <p className="max-w-xs text-sm text-[#b3b3bb]">
+              Done-for-you digital management for trade business owners. We install and run the systems your business needs to keep moving.
+            </p>
+          </div>
+          <div>
+            <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#b3b3bb]">
+              Site
+            </div>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/#how-it-works" className="text-white hover:text-[#e4002b]">
+                  How it works
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="text-white hover:text-[#e4002b]">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/#faq" className="text-white hover:text-[#e4002b]">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/#contact" className="text-white hover:text-[#e4002b]">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#b3b3bb]">
+              Get in touch
+            </div>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href="mailto:hello@linchpindigital.co"
+                  className="text-white hover:text-[#e4002b]"
+                >
+                  hello@linchpindigital.co
+                </a>
+              </li>
+              <li className="text-[#b3b3bb]">Built for trade businesses across the U.S.</li>
+            </ul>
+          </div>
+        </div>
+        <div className="mx-auto mt-10 max-w-6xl border-t border-white/10 px-4 pt-6">
+          <p className="text-xs text-[#b3b3bb]">
+            © {new Date().getFullYear()} Linchpin Digital. All rights reserved.
           </p>
         </div>
       </footer>

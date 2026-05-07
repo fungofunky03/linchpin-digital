@@ -30,46 +30,50 @@ export const stripe = new Proxy({} as Stripe, {
 })
 
 // ─── Plan config ─────────────────────────────────────────────────────────────
+// Founding-pilot pricing. Plan keys are tied to env-configured Stripe price IDs
+// (STRIPE_STARTER_PRICE_ID / STRIPE_GROWTH_PRICE_ID / STRIPE_PRO_PRICE_ID).
 export const PLANS = {
   starter: {
-    name: "Starter",
-    description: "Website + local SEO basics",
+    name: "Foundation",
+    description: "Local presence, lead inbox, and reviews — installed and monitored.",
     price: 99,
     get priceId() { return process.env.STRIPE_STARTER_PRICE_ID! },
     features: [
-      "5-page professional website",
-      "Google Business Profile setup",
-      "Basic local SEO",
-      "Monthly performance report",
-      "Email support",
+      "Lead inbox (calls, web forms, Google messages in one place)",
+      "Missed-call text-back",
+      "Review request engine after every closed job",
+      "Google Business Profile tuning",
+      "Monthly plain-English report",
+      "Founder support by email",
     ],
   },
   growth: {
-    name: "Growth",
-    description: "Full marketing engine",
+    name: "Operate",
+    description: "The full installed system — lead capture through booked work.",
     price: 199,
     get priceId() { return process.env.STRIPE_GROWTH_PRICE_ID! },
     features: [
-      "Everything in Starter",
-      "AI receptionist (missed call text-back)",
-      "Review request automation",
-      "Lead tracking dashboard",
-      "Google Ads management",
-      "Priority support",
+      "Everything in Foundation",
+      "Automated follow-up sequences (new lead, quote sent, no-show)",
+      "Online booking + confirmations wired to your calendar",
+      "Review monitoring and replies",
+      "Local SEO maintenance and citation cleanup",
+      "Daily system monitoring",
+      "Direct text/call access",
     ],
   },
   pro: {
-    name: "Pro",
-    description: "Done-for-you growth partner",
+    name: "Command",
+    description: "Operate, plus a website that does the selling and tighter integrations.",
     price: 299,
     get priceId() { return process.env.STRIPE_PRO_PRICE_ID! },
     features: [
-      "Everything in Growth",
-      "Real-time ROI dashboard",
-      "Social media content (4 posts/mo)",
-      "Quarterly strategy call",
-      "Dedicated account manager",
-      "White-glove onboarding",
+      "Everything in Operate",
+      "Modern conversion-focused website (built or rebuilt)",
+      "CRM + phone system integrations",
+      "Quarterly system review and tuning",
+      "Owner dashboard: leads, jobs, reviews, sources",
+      "Priority response, same business day",
     ],
   },
 } as const
